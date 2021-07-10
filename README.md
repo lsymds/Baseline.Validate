@@ -21,7 +21,7 @@ public class UserRequestValidator : SyncValidator<UserRequest>
 
 // ...
 
-new UserRequestValidator().Validate(userRequest);a
+new UserRequestValidator().Validate(userRequest);
 ```
 
 ## 👥 Contributing
