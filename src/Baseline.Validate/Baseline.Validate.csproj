@@ -5,4 +5,14 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <PackageId>Baseline.Validate</PackageId>
+        <PackageTags>baseline;baseline.validate;validation;simple validation;fluentvalidation;fluent validation</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Authors>lsymonds</Authors>
+        <RepositoryUrl>https://github.com/getbaseline/Baseline.Validate</RepositoryUrl>
+        <PackageDescription>Minimal, magic free, configuration over convention validation constructs for modern .NET projects.</PackageDescription>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
 </Project>

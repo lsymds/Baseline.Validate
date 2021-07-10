@@ -5,6 +5,16 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <PackageId>Baseline.Validate.AspNetCore</PackageId>
+        <PackageTags>baseline;baseline.validate;validation;simple validation;fluentvalidation;fluent validation;netcore;dotnet core;aspnet core</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Authors>lsymonds</Authors>
+        <RepositoryUrl>https://github.com/getbaseline/Baseline.Validate</RepositoryUrl>
+        <PackageDescription>ASP.NET Core middleware for handling Baseline.Validate exceptions.</PackageDescription>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
     <ItemGroup>
       <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.0.0" />
       <PackageReference Include="Microsoft.AspNetCore.Http.Extensions" Version="2.0.0" />

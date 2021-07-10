@@ -5,6 +5,16 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
 
+    <PropertyGroup>
+        <PackageId>Baseline.Validate.DependencyInjection</PackageId>
+        <PackageTags>baseline;baseline.validate;validation;simple validation;fluentvalidation;fluent validation;netcore;dotnet core;aspnet core;dependency injection;</PackageTags>
+        <PackageLicenseExpression>MIT</PackageLicenseExpression>
+        <Authors>lsymonds</Authors>
+        <RepositoryUrl>https://github.com/getbaseline/Baseline.Validate</RepositoryUrl>
+        <PackageDescription>Extension methods to automatically add Baseline.Validate validation classes to an IoC container.</PackageDescription>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    </PropertyGroup>
+
     <ItemGroup>
       <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1" />
     </ItemGroup>
