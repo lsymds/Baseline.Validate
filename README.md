@@ -21,7 +21,7 @@ public class UserRequestValidator : SyncValidator<UserRequest>
 
 // ...
 
-new UserRequestValidator().Validate(userRequest);
+new UserRequestValidator().Validate(userRequest);a
 ```
 
 ## 👥 Contributing
@@ -31,4 +31,4 @@ link below.
 
 ## 📕 Documentation
 
-Documentation for this project is available on our project documentation site: https://docs.baselineproject.xyz/validate/.
+Documentation for this project is available on our project documentation site: https://docs.getbaseline.net/validate/.
