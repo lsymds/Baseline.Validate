@@ -57,7 +57,7 @@ namespace Baseline.Validate
                         reason = "Validation failure.",
                         validationFailures = e.ValidationResult
                             .Failures
-                            .Select(vrf => new { property = vrf.Key, message = vrf.Value })
+                            .Select(vrf => new { property = vrf.Key, messages = vrf.Value })
                     }
                 );
             }

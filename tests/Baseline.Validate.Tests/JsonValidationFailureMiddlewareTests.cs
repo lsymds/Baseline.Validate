@@ -101,7 +101,7 @@ namespace Baseline.Validate.Tests
             (await response.Content.ReadAsStringAsync())
                 .Should()
                 .Be(
-                    @"{""reason"":""Validation failure."",""validationFailures"":[{""property"":""Name"",""message"":""Name is required.""},{""property"":""Age"",""message"":""Age must be greater than 0.""}]}"
+                    @"{""reason"":""Validation failure."",""validationFailures"":[{""property"":""Name"",""messages"":[""Name is required.""]},{""property"":""Age"",""messages"":[""Age must be greater than 0.""]}]}"
                 );
             response.StatusCode.Should().Be(422);
             response.Headers.CacheControl.NoCache.Should().BeTrue();
