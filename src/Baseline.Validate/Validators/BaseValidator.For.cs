@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq.Expressions;
 
 namespace Baseline.Validate
@@ -65,7 +66,7 @@ namespace Baseline.Validate
         protected ValidationResult FailureFor(string property, string message)
         {
             var validationResult = new ValidationResult(ValidatingTypeName);
-            validationResult.Failures.Add(property, message.Replace(":property", property));
+            validationResult.Failures.Add(property, new List<string> { message.Replace(":property", property) });
             return validationResult;
         }
     }

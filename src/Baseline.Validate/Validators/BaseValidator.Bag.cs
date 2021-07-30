@@ -60,7 +60,8 @@ namespace Baseline.Validate
         /// <param name="message">The message to return.</param>
         protected void BagFailureFor(string property, string message)
         {
-            _baggedValidationResult.Failures.Add(property, message.Replace(":property", property));
+            InitialisePropertyErrorsIfRequired(property);
+            _baggedValidationResult.Failures[property].Add(message.Replace(":property", property));
         }
 
     }

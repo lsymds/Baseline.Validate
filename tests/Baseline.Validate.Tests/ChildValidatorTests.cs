@@ -56,7 +56,7 @@ namespace Baseline.Validate.Tests
             // Assert.
             validationResult.Success.Should().BeFalse();
             validationResult.Failures.Should().ContainKey("Child.Name");
-            validationResult.Failures.Should().ContainValue("Name is required.");
+            validationResult.Failures["Child.Name"].Should().Contain("Name is required.");
         }
     }
 }

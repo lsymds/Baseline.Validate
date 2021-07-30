@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -38,11 +39,16 @@ namespace Baseline.Validate
             return _baggedValidationResult;
         }
 
-        /// <summary>
-        /// Gets and returns the name of a field from an expression. Allows consumers of the library to do funky things
-        /// like <code>FailureFor(user => user.Name, "This failed!");</code>
-        /// </summary>
-        /// <param name="expression">The expression to retrieve the field name from.</param>
+        private void InitialisePropertyErrorsIfRequired(string property)
+        {
+            if (_baggedValidationResult.Failures.ContainsKey(property))
+            {
+                return;
+            }
+
+            _baggedValidationResult.Failures[property] = new List<string>();
+        }
+
         private static string GetNameOfField<TField>(Expression<Func<TToValidate, TField>> expression)
         {
             return expression.Body switch

@@ -21,7 +21,7 @@ namespace Baseline.Validate
         /// <summary>
         /// Gets the validation failures. Empty if there aren't any.
         /// </summary>
-        public Dictionary<string, string> Failures { get; } = new Dictionary<string, string>();
+        public Dictionary<string, IList<string>> Failures { get; } = new Dictionary<string, IList<string>>();
 
         /// <summary>
         /// Initialises a new instance of the <see cref="ValidationResult"/> object, setting the target or object name

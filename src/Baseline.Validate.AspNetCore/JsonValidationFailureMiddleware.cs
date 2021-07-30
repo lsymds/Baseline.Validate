@@ -4,21 +4,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Logging;
 
+// ReSharper disable once CheckNamespace
 namespace Baseline.Validate
 {
-    /// <summary>
-    /// Middleware that handles any validation errors thrown and serializes and returns them as a JSON response.
-    /// </summary>
     public class JsonValidationFailureMiddleware
     {
         private readonly RequestDelegate _next;
         private readonly ILogger<JsonValidationFailureMiddleware> _logger;
 
-        /// <summary>
-        /// Initialises a new instance of the <see cref="JsonValidationFailureMiddleware" /> class.
-        /// </summary>
-        /// <param name="next">The next action in the pipeline to execute.</param>
-        /// <param name="logger">A logger.</param>
         public JsonValidationFailureMiddleware(
             RequestDelegate next,
             ILogger<JsonValidationFailureMiddleware> logger
@@ -28,11 +21,6 @@ namespace Baseline.Validate
             _logger = logger;
         }
 
-        /// <summary>
-        /// Handles the invocation of the middleware, calling the next action in the pipeline and handling validation
-        /// errors if they are thrown.
-        /// </summary>
-        /// <param name="httpContext">The context of the request and response.</param>
         public async Task InvokeAsync(HttpContext httpContext)
         {
             try
@@ -69,16 +57,12 @@ namespace Baseline.Validate
                         reason = "Validation failure.",
                         validationFailures = e.ValidationResult
                             .Failures
-                            .Select(vrf => new { property = vrf.Key, message = vrf.Value })
+                            .Select(vrf => new { property = vrf.Key, messages = vrf.Value })
                     }
                 );
             }
         }
         
-        /// <summary>
-        /// Prevents any cache headers being returned from this endpoint.
-        /// </summary>
-        /// <param name="state">The current response state.</param>
         private static Task ClearCacheHeaders(object state)
         {
             var headers = ((HttpContext)state).Response.Headers;

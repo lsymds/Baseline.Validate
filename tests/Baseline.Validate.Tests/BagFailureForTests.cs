@@ -17,6 +17,7 @@ namespace Baseline.Validate.Tests
             if (toValidate.PropertyOne == null)
             {
                 BagFailureFor("PropertyOne", "PropertyOne is required.");
+                BagFailureFor(fc => fc.PropertyOne, "PropertyOne is required, again.");
             }
 
             if (toValidate.PropertyTwo == null)
@@ -62,6 +63,7 @@ namespace Baseline.Validate.Tests
             validationResult.Success.Should().BeFalse();
             validationResult.Failures.Should().ContainKey("PropertyOne");
             validationResult.Failures.Should().ContainKey("PropertyTwo");
+            validationResult.Failures["PropertyOne"].Should().HaveCount(2);
         }
 
         [Fact]

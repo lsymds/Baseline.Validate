@@ -49,7 +49,7 @@ namespace Baseline.Validate.Tests
                 .Validate(failureMessageSubstitutionClass);
             
             // Assert.
-            validationResult.Failures.Should().ContainValue("Name is required.");
+            validationResult.Failures["Name"].Should().Contain("Name is required.");
         }
         
         [Fact]
@@ -63,7 +63,7 @@ namespace Baseline.Validate.Tests
                 .Validate(failureMessageSubstitutionClass);
             
             // Assert.
-            validationResult.Failures.Should().ContainValue("Name is required.");
+            validationResult.Failures["Name"].Should().Contain("Name is required.");
         }
     }
 }

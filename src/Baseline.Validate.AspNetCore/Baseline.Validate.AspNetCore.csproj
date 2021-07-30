@@ -13,6 +13,7 @@
         <RepositoryUrl>https://github.com/getbaseline/Baseline.Validate</RepositoryUrl>
         <PackageDescription>ASP.NET Core middleware for handling Baseline.Validate exceptions.</PackageDescription>
         <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <NoWarn>1591</NoWarn>
     </PropertyGroup>
 
     <ItemGroup>
