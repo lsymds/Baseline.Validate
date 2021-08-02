@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using Baseline.Validate.Internal.Extensions;
 
 namespace Baseline.Validate
 {
@@ -11,15 +12,15 @@ namespace Baseline.Validate
     public abstract partial class BaseValidator<TToValidate>
     {
         private readonly ValidationResult _baggedValidationResult;
-        
-        protected string ValidatingTypeName { get; }
+
+        private string ValidatingTypeName { get; }
 
         /// <summary>
         /// Initialises a new instance of the <see cref="BaseValidator{TToValidate}"/> class.
         /// </summary>
         protected BaseValidator()
         {
-            ValidatingTypeName = GetType().BaseType!.GenericTypeArguments.First().Name;
+            ValidatingTypeName = GetType().ValidatorBaseType()!.GetGenericArguments().First().Name;
             _baggedValidationResult = new ValidationResult(ValidatingTypeName);
         }
 

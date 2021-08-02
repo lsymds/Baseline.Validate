@@ -1,6 +1,7 @@
 using System;
 using System.Linq;
 using System.Reflection;
+using Baseline.Validate.Internal.Extensions;
 using Microsoft.Extensions.DependencyInjection;
 
 // ReSharper disable once CheckNamespace
@@ -31,18 +32,12 @@ namespace Baseline.Validate
             {
                 var validatorTypesInAssembly = assembly
                     .GetTypes()
-                    .Where(
-                        a => a.BaseType is {IsGenericType: true} && 
-                             (
-                                a.BaseType.GetGenericTypeDefinition() == typeof(SyncValidator<>) || 
-                                a.BaseType.GetGenericTypeDefinition() == typeof(AsyncValidator<>)
-                            )
-                    )
+                    .Where(a => a.IsRegisterableValidator())
                     .Select(t => new
                     {
                         ValidatorType = t,
-                        AsyncValidator = t.BaseType!.GetGenericTypeDefinition() == typeof(AsyncValidator<>),
-                        ValidatingType = t.BaseType!.GenericTypeArguments.First()
+                        AsyncValidator = t.ValidatorBaseType()!.GetGenericTypeDefinition() == typeof(AsyncValidator<>),
+                        ValidatingType = t.ValidatorBaseType()!.GenericTypeArguments.First()
                     });
 
                 foreach (var validatorTypeInAssembly in validatorTypesInAssembly)
