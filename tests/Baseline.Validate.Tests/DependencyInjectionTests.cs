@@ -30,6 +30,32 @@ namespace Baseline.Validate.Tests
         }
     }
     
+    public class MultiLevelTestClass
+    {}
+
+    public abstract class BaseBaseBaseMultiLevelTestClassValidator : AsyncValidator<MultiLevelTestClass>
+    {
+    }
+
+    public abstract class BaseBaseMultiLevelTestClassValidator : BaseBaseBaseMultiLevelTestClassValidator
+    {
+    }
+
+    public abstract class BaseMultiLevelTestClassValidator : BaseBaseMultiLevelTestClassValidator
+    {
+    }
+
+    public class MultiLevelTestClassValidator : BaseMultiLevelTestClassValidator
+    {
+        public override ValueTask<ValidationResult> ValidateAsync(
+            MultiLevelTestClass toValidate, 
+            CancellationToken cancellationToken = default
+        )
+        {
+            throw new System.NotImplementedException();
+        }
+    }
+
     public class DependencyInjectionTests
     {
         private readonly IServiceCollection _serviceCollection = new ServiceCollection();
@@ -88,6 +114,22 @@ namespace Baseline.Validate.Tests
             
             // Assert.
             testClassAsyncValidator.Should().NotBeNull();
+        }
+
+        [Fact]
+        public void It_Registers_Validators_With_Nested_Base_Classes()
+        {
+            // Arrange.
+            _serviceCollection.AddBaselineValidate(typeof(DependencyInjectionTests).Assembly);
+            var serviceProvider = _serviceCollection.BuildServiceProvider();
+            
+            // Act.
+            var multiLevelValidatorRegistration = serviceProvider.GetService<MultiLevelTestClassValidator>();
+            var multiLevelValidatorInterfaceRegistration = serviceProvider.GetService<IAsyncValidator<MultiLevelTestClass>>();
+            
+            // Assert.
+            multiLevelValidatorRegistration.Should().NotBeNull();
+            multiLevelValidatorInterfaceRegistration.Should().NotBeNull();
         }
     }
 }
