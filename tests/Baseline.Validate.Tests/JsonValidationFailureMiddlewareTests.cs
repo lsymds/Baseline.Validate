@@ -1,5 +1,6 @@
 using System;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Threading.Tasks;
@@ -103,9 +104,9 @@ namespace Baseline.Validate.Tests
                 .Be(
                     @"{""reason"":""Validation failure."",""validationFailures"":[{""property"":""Name"",""messages"":[""Name is required.""]},{""property"":""Age"",""messages"":[""Age must be greater than 0.""]}]}"
                 );
-            response.StatusCode.Should().Be(422);
-            response.Headers.CacheControl.NoCache.Should().BeTrue();
-            response.Headers.CacheControl.NoStore.Should().BeTrue();
+            response.StatusCode.Should().Be(HttpStatusCode.UnprocessableEntity);
+            response.Headers.CacheControl!.NoCache.Should().BeTrue();
+            response.Headers.CacheControl!.NoStore.Should().BeTrue();
             response.Headers.Pragma.First().Name.Should().Be("no-cache");
             response.Headers.ETag.Should().BeNull();
         }
