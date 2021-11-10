@@ -1,4 +1,5 @@
 using System;
+using System.Text;
 
 namespace Baseline.Validate
 {
@@ -17,12 +18,37 @@ namespace Baseline.Validate
         /// that informs readers of the exception what validation has failed for and why.
         /// </summary>
         /// <param name="validationResult">The validation result that was a failure.</param>
-        public ValidationFailedException(ValidationResult validationResult) : base(
-            $"Validation failed for object {validationResult.ValidationTarget} with {validationResult.Failures.Count} " +
-            $"{(validationResult.Failures.Count > 1 ? "failures" : "failure")}."
-        )
+        public ValidationFailedException(ValidationResult validationResult)
         {
             ValidationResult = validationResult;
+        }
+
+        /// <inheritdoc />
+        public override string Message
+        {
+            get
+            {
+                var stringBuilder = new StringBuilder();
+
+                stringBuilder.AppendLine(
+                    $"Validation failed for object {ValidationResult.ValidationTarget} with " +
+                    $"{ValidationResult.Failures.Count} failed " +
+                    $"{(ValidationResult.Failures.Count == 1 ? "property" : "properties")}."
+                );
+
+                foreach (var failure in ValidationResult.Failures)
+                {
+                    stringBuilder.Append(Environment.NewLine);
+                    stringBuilder.AppendLine($"{failure.Key}:");
+
+                    foreach (var failureMessage in failure.Value)
+                    {
+                        stringBuilder.AppendLine($"\t{failureMessage}");
+                    }
+                }
+
+                return stringBuilder.ToString();
+            }
         }
     }
 }
