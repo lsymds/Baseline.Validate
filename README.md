@@ -1,5 +1,9 @@
 # 👋 Baseline.Validate
 
+> This repository has been archived. Whilst there were grand plans for it initially, you're probably better off with one of the many existing validation libraries out there or just writing your own classes.
+
+> Documentation remains up but not linked to on the documentation website.
+
 Minimal, magic free, configuration over convention validation constructs for modern .NET projects.
 
 ```csharp
@@ -26,7 +30,7 @@ new UserRequestValidator().Validate(userRequest);
 
 ## 👥 Contributing
 
-To learn more about contributing to the project, please read our contribution guidelines available at the documentation 
+To learn more about contributing to the project, please read our contribution guidelines available at the documentation
 link below.
 
 ## 📕 Documentation
